@@ -32,7 +32,7 @@ function login(e) {
   const userData = JSON.parse(localStorage.getItem(email));
 
   if (userData && userData.password === password) {
-    alert("Login successful!");
+    // alert("Login successful!");
     loginForm.reset();
     window.location.href = "products.html";
   } else {
@@ -46,6 +46,11 @@ function addData(e) {
   event.preventDefault();
   let productName = document.getElementById("productName").value;
   let productPrice = document.getElementById("productPrice").value;
+
+  if (productName.trim() === "" || productPrice.trim() === "") {
+    alert("Please enter both product name and price.");
+    return;
+  }
 
   let newProduct = {
     name: productName,
