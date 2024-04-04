@@ -1,138 +1,89 @@
-const signupForm = document.getElementById("signupForm");
-const loginForm = document.getElementById("loginForm");
-
-// Signup Form Submission
-
-function signup(e) {
-  event.preventDefault();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  if (localStorage.getItem(email)) {
-    document.getElementById("signupError").textContent =
-      "Email already exsists";
-  } else {
-    localStorage.setItem(
-      email,
-      JSON.stringify({ email: email, password: password })
-    );
-    alert("Signup Successful! Please Login");
-    signupForm.reset();
-    window.location.href = "login.html";
-  }
-}
-
-//Login Form Submission
-
-function login(e) {
-  event.preventDefault();
-  const email = document.getElementById("login_email").value;
-  const password = document.getElementById("login_password").value;
-
-  const userData = JSON.parse(localStorage.getItem(email));
-
-  if (userData && userData.password === password) {
-    // alert("Login successful!");
-    loginForm.reset();
-    window.location.href = "products.html";
-  } else {
-    document.getElementById("loginError").textContent =
-      "Invalid email or password";
-  }
-}
-
-// Add Data
-function addData(e) {
-  event.preventDefault();
-  let productName = document.getElementById("productName").value;
-  let productPrice = document.getElementById("productPrice").value;
-
-  if (productName.trim() === "" || productPrice.trim() === "") {
-    alert("Please enter both product name and price.");
-    return;
+class ProductManager {
+  constructor() {
+    this.productList = JSON.parse(localStorage.getItem("productList")) || [];
   }
 
-  let newProduct = {
-    name: productName,
-    price: productPrice,
-  };
-  let productList;
-  if (localStorage.getItem("productList") == null) {
-    productList = [];
-  } else {
-    productList = JSON.parse(localStorage.getItem("productList"));
-  }
-  productList.push(newProduct);
-  localStorage.setItem("productList", JSON.stringify(productList));
-  displayData();
-}
+  // Add Product
+  addProduct(name, price) {
+    if (name.trim() === "" || price.trim() === "") {
+      swal("Please enter both product name and price.");
+      return;
+    }
 
-// Display Data
-
-function displayData() {
-  let productList;
-  if (localStorage.getItem("productList") == null) {
-    productList = [];
-  } else {
-    productList = JSON.parse(localStorage.getItem("productList"));
+    this.productList.push({ name, price });
+    this.saveProducts();
+    this.displayProducts();
+    swal("Good job!", "Product Successfully Added!", "success");
   }
 
-  var html = "";
-
-  productList.forEach(function (element, index) {
-    html += "<tr>";
-    html += "<td>" + element.name + "</td>";
-    html += "<td>" + element.price + "</td>";
-    html += `<td>
-    <button onclick="deleteData(${index})" class="btn btn-delete">Delete</button>
-    <button onclick="updateData(${index})" class="btn btn-edit">Edit</button>
-  </td>`;
-
-    html += "</tr>";
-  });
-  document.querySelector("#productTable tbody").innerHTML = html;
-}
-
-document.onload = displayData();
-
-// Delete Data
-
-function deleteData(index) {
-  var productList;
-  if (localStorage.getItem("productList") == null) {
-    productList = [];
-  } else {
-    productList = JSON.parse(localStorage.getItem("productList"));
-  }
-  productList.splice(index, 1);
-  localStorage.setItem("productList", JSON.stringify(productList));
-  displayData();
-}
-
-// Update/Edit Data
-
-function updateData(index) {
-  document.getElementById("Submit").style.display = "none";
-  document.getElementById("Update").style.display = "block";
-
-  var productList;
-  if (localStorage.getItem("productList") == null) {
-    productList = [];
-  } else {
-    productList = JSON.parse(localStorage.getItem("productList"));
+  // Display Product
+  displayProducts() {
+    var html = "";
+    this.productList.forEach((element, index) => {
+      html += "<tr>";
+      html += `<td>${element.name}</td>`;
+      html += `<td>${element.price}</td>`;
+      html += `<td>
+        <button onclick="productManager.deleteProduct(${index})" class="btn btn-delete">Delete</button>
+        <button onclick="productManager.updateProduct(${index})" class="btn btn-edit">Edit</button>
+      </td>`;
+      html += "</tr>";
+    });
+    document.querySelector("#productTable tbody").innerHTML = html;
   }
 
-  document.getElementById("productName").value = productList[index].name;
-  document.getElementById("productPrice").value = productList[index].price;
+  deleteProduct(index) {
+    this.productList.splice(index, 1);
+    this.saveProducts();
+    this.displayProducts();
+    swal("Delete", "Product Successfully Deleted!", "warning");
+  }
 
-  document.getElementById("Update").onclick = function () {
-    productList[index].name = document.getElementById("productName").value;
-    productList[index].price = document.getElementById("productPrice").value;
-    localStorage.setItem("productList", JSON.stringify(productList));
-    displayData();
+  // Update/Edit Product
+  updateProduct(index) {
+    const product = this.productList[index];
+    document.getElementById("productName").value = product.name;
+    document.getElementById("productPrice").value = product.price;
+
+    document.getElementById("Submit").style.display = "none";
+    document.getElementById("Update").style.display = "block";
+
+    document.getElementById("Update").onclick = () => {
+      product.name = document.getElementById("productName").value;
+      product.price = document.getElementById("productPrice").value;
+      this.saveProducts();
+      this.displayProducts();
+      this.resetForm();
+      swal("Good Job!", "Product Successfully Updated!", "success");
+    };
+  }
+
+  resetForm() {
     document.getElementById("productName").value = "";
     document.getElementById("productPrice").value = "";
     document.getElementById("Submit").style.display = "block";
     document.getElementById("Update").style.display = "none";
-  };
+  }
+
+  saveProducts() {
+    localStorage.setItem("productList", JSON.stringify(this.productList));
+  }
+}
+
+const productManager = new ProductManager();
+
+function handleProductUpdate(e) {
+  event.preventDefault();
+  const productName = document.getElementById("productName").value;
+  const productPrice = document.getElementById("productPrice").value;
+  productManager.addProduct(productName, productPrice);
+}
+
+productManager.displayProducts();
+
+function logout() {
+  swal("Logout!", "You have been successfully Logged Out!", "success");
+  setTimeout(() => {
+    window.location.href = "registration.html";
+  }, 2000);
 }
