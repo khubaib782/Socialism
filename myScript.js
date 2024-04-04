@@ -14,6 +14,7 @@ class ProductManager {
     this.saveProducts();
     this.displayProducts();
     swal("Good job!", "Product Successfully Added!", "success");
+    this.formReset();
   }
 
   // Display Product
@@ -51,11 +52,20 @@ class ProductManager {
     document.getElementById("Update").onclick = () => {
       product.name = document.getElementById("productName").value;
       product.price = document.getElementById("productPrice").value;
+      if (product.name.trim() === "" || product.price.trim() === "") {
+        swal("Please enter both product name and price.");
+        return;
+      }
       this.saveProducts();
       this.displayProducts();
       this.resetForm();
       swal("Good Job!", "Product Successfully Updated!", "success");
     };
+  }
+
+  formReset() {
+    document.getElementById("productName").value = "";
+    document.getElementById("productPrice").value = "";
   }
 
   resetForm() {
