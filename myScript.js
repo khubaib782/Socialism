@@ -84,6 +84,6 @@ productManager.displayProducts();
 function logout() {
   swal("Logout!", "You have been successfully Logged Out!", "success");
   setTimeout(() => {
-    window.location.href = "registration.html";
+    window.location.href = "index.html";
   }, 2000);
 }
