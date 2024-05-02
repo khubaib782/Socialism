@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="./style/social.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 p-0">
+          <nav
+            style="background-color: #58c8f8"
+            class="navbar navbar-expand-md"
+          >
+            <div class="container-fluid">
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div
+                class="collapse navbar-collapse navbar-position"
+                id="navbarSupportedContent"
+              >
+                <div class="div">
+                  <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a href="./social.html">
+                        <img
+                          style="width: 100px"
+                          src="./images/logo.png"
+                          alt=""
+                        />
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="form-div">
+                  <form class="d-flex" role="search">
+                    <div class="search-container">
+                      <div class="searchInputWrapper">
+                        <input
+                          class="searchInput"
+                          id="searchPost"
+                          type="text"
+                          placeholder="focus here to search"
+                        />
+                        <i
+                          onclick="Interaction.performSearch()"
+                          class="searchInputIcon fa fa-search"
+                        ></i>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="icons-container">
+                  <div class="content">
+                    <div class="icon-container">
+                      <div class="icon icon-fill">
+                        <i class="fa-regular fa-square-plus"></i>
+                      </div>
+                      <div class="icon icon-enter">
+                        <i class="fa-solid fa-video"></i>
+                      </div>
+                      <div class="icon icon-expand me-5">
+                        <a href="profile.html">
+                          <i class="fa-solid fa-user"></i>
+                        </a>
+                      </div>
+                      <div class="div">
+                        <a onclick="logout()" class="home-button">Logout</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 20px" class="container-fluid sec-container">
+      <div class="row">
+        <div class="col-3 left-mob-col">
+          <div class="left-container">
+            <div class="activity-card">
+              <div class="head-div">
+                <h2>Activity</h2>
+                <a href="/">See all</a>
+              </div>
+              <div class="div">
+                <h6 style="font-size: 16px; font-weight: 700; margin-top: 20px">
+                  Stories about you
+                </h6>
+              </div>
+              <div class="story-div">
+                <img
+                  src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg"
+                  alt="Story image"
+                />
+                <div class="story-text-div">
+                  <h6 style="margin: 0">Mentions</h6>
+                  <p>2 people mentioned you</p>
+                </div>
+              </div>
+              <h4 class="new-word">New</h4>
+              <div class="story-sec-div">
+                <div>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa4xjShh4ynJbrgYrW_aB4lhKSxeMzQ3cO_A&usqp=CAU"
+                    alt="Story image"
+                  />
+                </div>
+                <div class="story-text-div">
+                  <p><strong>Khubaib</strong> started following you.</p>
+                </div>
+                <div class="sec-icon-div">
+                  <i class="fa-solid fa-user-plus" style="color: #476fe6"></i>
+                </div>
+              </div>
+              <div class="story-sec-div">
+                <div>
+                  <img
+                    src="https://s.hdnux.com/photos/51/23/24/10827008/4/1200x0.jpg"
+                    alt="Story image"
+                  />
+                </div>
+                <div class="story-text-div">
+                  <p><strong>Ali</strong> liked your photo.</p>
+                </div>
+                <div class="sec-icon-div">
+                  <i class="fa-solid fa-heart" style="color: #ff0000"></i>
+                </div>
+              </div>
+              <div class="story-sec-div">
+                <div>
+                  <img
+                    src="https://www.wikihow.com/images/9/90/What_type_of_person_are_you_quiz_pic.png"
+                    alt="Story image"
+                  />
+                </div>
+                <div class="story-text-div">
+                  <p><strong>Muddasir</strong> started following you.</p>
+                </div>
+                <div class="sec-icon-div">
+                  <i class="fa-solid fa-user-plus" style="color: #476fe6"></i>
+                </div>
+              </div>
+              <div class="story-sec-div">
+                <div>
+                  <img
+                    src="https://i0.wp.com/www.yesmagazine.org/wp-content/uploads/2022/03/Ghaderi_1400x840.jpg?fit=1400%2C840&quality=90&ssl=1"
+                    alt="Story image"
+                  />
+                </div>
+                <div class="story-text-div">
+                  <p><strong>Kamran</strong> liked your photo.</p>
+                </div>
+                <div class="sec-icon-div">
+                  <i class="fa-solid fa-heart" style="color: #ff0000"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 mid-mob-col">
+          <div class="story-panel">
+            <div class="story">
+              <div class="plus-icon"><i class="fa-solid fa-plus"></i></div>
+              <img src="./images/FB_IMG_1678395783350.jpg" alt="Your Story" />
+              <span class="story-username">Your Story</span>
+            </div>
+            <div class="circle">
+              <img
+                src="https://en.gravatar.com/userimage/8283692/4c9d9ec1cd3fd02acb5ac9572e3583da?size=200"
+                alt=""
+              />
+              <span class="name">Rehan</span>
+            </div>
+            <div class="circle">
+              <img
+                src="data:image/jpeg;base64,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"
+                alt=""
+              />
+              <span class="name">John</span>
+            </div>
+            <div class="circle">
+              <img
+                src="https://i0.wp.com/www.yesmagazine.org/wp-content/uploads/2022/03/Ghaderi_1400x840.jpg?fit=1400%2C840&quality=90&ssl=1"
+                alt=""
+              />
+              <span class="name">Aleena</span>
+            </div>
+            <div class="circle">
+              <img
+                src="https://www.realmenrealstyle.com/wp-content/uploads/2023/07/Glasses-for-Oval-shape.jpg"
+                alt=""
+              />
+              <span class="name">Sam</span>
+            </div>
+          </div>
+
+          <div id="feed-container" class="feedContainer"></div>
+          <!-- <button id="load-more-btn">Load more</button> -->
+        </div>
+        <div class="col-3 last-mob-col">
+          <div class="right-container">
+            <div class="activity-card">
+              <div class="head-div">
+                <h2>Messages</h2>
+                <a href="/">
+                  <i
+                    style="font-weight: 600; font-size: 19px"
+                    class="fa-regular fa-pen-to-square"
+                  ></i>
+                </a>
+              </div>
+              <div class="form-div pt-3">
+                <form class="d-flex" role="search">
+                  <div class="search-container">
+                    <div class="searchInputWrapper">
+                      <input
+                        class="messageSearch"
+                        type="text"
+                        placeholder="Search messages"
+                      />
+                      <i class="searchInputIcon fa fa-search"></i>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="message-button-div">
+                <div class="row">
+                  <div class="p-0 button-col col-6">
+                    <button class="message-button">Primary</button>
+                    <button class="message-button">General</button>
+                  </div>
+                  <div class="col-6 req-col p-0">
+                    <a href="">Requests (2)</a>
+                  </div>
+                  <hr class="my-2 border-gray" />
+                </div>
+              </div>
+
+              <div class="last-online-div">
+                <div id="user-name" class="last-text-div"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="./JS/socialism.js"></script>
+  <script>
+    function logout() {
+      swal("Logout!", "You have been successfully Logged Out!", "success");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2000);
+    }
+  </script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+    crossorigin="anonymous"
+  ></script>
+</html>
